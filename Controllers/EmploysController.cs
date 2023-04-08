@@ -44,7 +44,7 @@ namespace HealthControlApp.API.Controllers
         {
             try
             {
-                _employRepo.DeleteAsync(employId);
+                await _employRepo.DeleteAsync(employId);
                 return Ok();
             }
             catch (Exception)

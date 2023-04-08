@@ -16,10 +16,16 @@ namespace HealthControlApp.API.Controllers
             _userServices = userServices;
         }
 
-        [HttpGet]
+        [HttpGet("{userId}")]
         public Task<UserRepo> FindByIdAsync(int? userId)
         {
             return _userServices.FindByIdAsync(userId);
+        }
+
+        [HttpGet]
+        public Task<IEnumerable<UserRepo>> GetAllAsync()
+        {
+            return _userServices.GetUsers();
         }
     }
 }

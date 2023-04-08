@@ -10,7 +10,6 @@ namespace HealthControlApp.API.Models.MainModels
         public string Login { get; set; }
         [Required]
         public string Pass { get; set; }
-        public int IdGroup { get; set; }
         public int IdRole { get; set; }
         public int IdEmploy { get; set; }
         public bool IsDeleted { get; set; }

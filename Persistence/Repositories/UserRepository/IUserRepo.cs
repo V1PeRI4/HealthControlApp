@@ -10,5 +10,6 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         Task AddAsync(UserRepo userRepo);
         void Update(User user);
         Task DeleteAsync(int userId);
+        Task<IEnumerable<EmployRepo>> GetEmploys();
     }
 }

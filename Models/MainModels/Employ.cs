@@ -8,7 +8,9 @@ namespace HealthControlApp.API.Models.MainModels
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public string SurName { get; set; }
+        public string LastName { get; set; }
+        public string FatherName { get; set; }
+        public int IdGroup { get; set; }
         public int IdHealthEmployStatus { get; set; }
 
     }

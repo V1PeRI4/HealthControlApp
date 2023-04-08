@@ -2,6 +2,7 @@
 using HealthControlApp.API.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthControlApp.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230407132814_HealthControlMigrationV8")]
+    partial class HealthControlMigrationV8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,21 +32,14 @@ namespace HealthControlApp.API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FatherName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("IdGroup")
-                        .HasColumnType("integer");
-
                     b.Property<int>("IdHealthEmployStatus")
                         .HasColumnType("integer");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("SurName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -88,7 +84,7 @@ namespace HealthControlApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("IdHealthStatus")
+                    b.Property<int>("HealthStatus")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -139,6 +135,9 @@ namespace HealthControlApp.API.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("IdEmploy")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdGroup")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdRole")

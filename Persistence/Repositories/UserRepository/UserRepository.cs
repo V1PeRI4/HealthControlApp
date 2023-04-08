@@ -1,6 +1,8 @@
 ﻿using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
+using HealthControlApp.API.Persistence.Repositories.EmployRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthControlApp.API.Persistence.Repositories.UserRepository
 {
@@ -28,7 +30,15 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
             return _user;
         }
 
-        public Task<IEnumerable<int>> GetAllId()
+        public async Task<IEnumerable<int>> GetAllId()
+        {
+            var userList = await _context.Users.ToListAsync();
+            List<int> allId = new List<int>();
+            userList.ForEach(e => { allId.Add(e.Id); });
+            return allId;
+        }
+
+        public Task<IEnumerable<EmployRepo>> GetEmploys()
         {
             throw new NotImplementedException();
         }
