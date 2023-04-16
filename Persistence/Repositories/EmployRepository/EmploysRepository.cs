@@ -1,6 +1,7 @@
 ﻿using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
 {
@@ -40,19 +41,14 @@ namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
         /*  ADD EMPLOY  */
         public async Task AddAsync(Employ _employ)
         {
-            if (_employ.Id != 0)
+            try
             {
-                try
-                {
-                    await _context.AddAsync(_employ);
-                    await _context.SaveChangesAsync();
-
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-
+                await _context.AddAsync(_employ);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
             return;
         }

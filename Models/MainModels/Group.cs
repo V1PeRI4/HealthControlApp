@@ -9,6 +9,7 @@ namespace HealthControlApp.API.Models.MainModels
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        [Required]
         public int IdMainGroup { get; set; }
 
 

@@ -1,5 +1,6 @@
 ﻿using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Persistence.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace HealthControlApp.API.Controllers
             _userServices = userServices;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("{userId}"), Authorize]
         public Task<UserRepo> FindByIdAsync(int? userId)
         {
             return _userServices.FindByIdAsync(userId);

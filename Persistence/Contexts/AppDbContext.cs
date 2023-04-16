@@ -1,14 +1,17 @@
 ﻿using HealthControlApp.API.Models.MainModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using HealthControlApp.API.Persistence.QueryResults;
 
 namespace HealthControlApp.API.Persistence.Contexts
 {
 
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityUserContext<IdentityUser>
     {
         protected readonly IConfiguration Configuration;
 
-        public AppDbContext(IConfiguration configuration)
+        public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
         }
@@ -23,7 +26,12 @@ namespace HealthControlApp.API.Persistence.Contexts
         public DbSet<MainGroup> MainGroups { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<RegistrationRequest> RegistrationRequests { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<RegistrationRequest>().HasNoKey();
+        }
     }
 }

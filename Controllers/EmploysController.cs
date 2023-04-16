@@ -34,7 +34,6 @@ namespace HealthControlApp.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-
             await _employRepo.AddAsync(employ);
             return Ok();
         }

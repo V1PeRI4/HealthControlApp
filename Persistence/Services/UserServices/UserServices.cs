@@ -32,7 +32,7 @@ namespace HealthControlApp.API.Persistence.Services.UserServices
 
             UserRepo userRepo = new UserRepo();
             userRepo.Id = user.Id;
-            userRepo.Login = user.Login;
+            userRepo.Email = user.Email;
             userRepo.Pass = user.Pass;
 
             userRepo.Employ = employRepo;
