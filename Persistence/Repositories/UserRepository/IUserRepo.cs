@@ -11,6 +11,6 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         User GetEmptyAsync(UserRequest userRequest);
         void Update(User user);
         Task DeleteAsync(int userId);
-        Task<IEnumerable<EmployRepo>> GetEmploys();
+        Task<IEnumerable<UserRepo>> GetUser();
     }
 }

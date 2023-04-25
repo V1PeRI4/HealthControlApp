@@ -1,7 +1,6 @@
 ﻿using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
-using HealthControlApp.API.Persistence.Repositories.EmployRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthControlApp.API.Persistence.Repositories.UserRepository
@@ -30,7 +29,6 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
             {
                 Email = userRequest.Email,
                 IdRole = 0,
-                IdEmploy = userRequest.IdEmploy,
                 IsDeleted = false
             };
 
@@ -60,7 +58,7 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
             return allId;
         }
 
-        public Task<IEnumerable<EmployRepo>> GetEmploys()
+        public Task<IEnumerable<UserRepo>> GetUser()
         {
             throw new NotImplementedException();
         }

@@ -29,7 +29,7 @@ namespace HealthControlApp.API.Controllers
 
         }*/
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public Task<IEnumerable<UserRepo>> GetAllAsync()
         {
             return _userServices.GetUsers();

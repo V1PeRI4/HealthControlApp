@@ -5,6 +5,6 @@ namespace HealthControlApp.API.Persistence.Services.GroupServices
     public interface IGroupServices
     {
         Task<GroupRepo> FindByIdAsync(int? groupId);
-        Task<IEnumerable<GroupRepo>> GetEmploys();
+        Task<IEnumerable<GroupRepo>> GetUser();
     }
 }

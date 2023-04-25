@@ -20,7 +20,6 @@ namespace HealthControlApp.API.Persistence.Contexts
             options.UseNpgsql(Configuration.GetConnectionString("HealthControlApp.API"));
         }
 
-        public DbSet<Employ> Employ { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<HealthEmployStatus> HealthEmployStatuses { get; set; }
         public DbSet<MainGroup> MainGroups { get; set; }

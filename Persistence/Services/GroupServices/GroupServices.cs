@@ -37,7 +37,7 @@ namespace HealthControlApp.API.Persistence.Services.GroupServices
             return groupRepo;
         }
 
-        public Task<IEnumerable<GroupRepo>> GetEmploys()
+        public Task<IEnumerable<GroupRepo>> GetUser()
         {
             throw new NotImplementedException();
         }

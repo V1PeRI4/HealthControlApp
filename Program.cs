@@ -1,13 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using HealthControlApp.API.Persistence.Contexts;
-using HealthControlApp.API.Persistence.Repositories.EmployRepository;
 using HealthControlApp.API.Persistence.Repositories.HealthEmployStatusRepository;
 using HealthControlApp.API.Persistence.Repositories.GroupRepository;
 using HealthControlApp.API.Persistence.Repositories.MainGroupRepository;
 using HealthControlApp.API.Persistence.Repositories.RoleRepository;
 using HealthControlApp.API.Persistence.Repositories.UserRepository;
-using HealthControlApp.API.Persistence.Services.EmployServices;
 using HealthControlApp.API.Persistence.Services.GroupServices;
 using HealthControlApp.API.Persistence.Services.UserServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using HealthControlApp.API.Persistence.Services;
+using Microsoft.OpenApi.Models;
 
 internal class Program
 {
@@ -26,7 +25,36 @@ internal class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                        In = ParameterLocation.Header,
+                        Description = "Please enter a valid token",
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.Http,
+                        BearerFormat = "JWT",
+                        Scheme = "Bearer"
+                    }
+                );
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type=ReferenceType.SecurityScheme,
+                                    Id="Bearer"
+                                }
+                            },
+                            new string[]{}
+                        }
+                    }
+                );
+            }
+        );
         /* Authentication */
         builder.Services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -64,14 +92,12 @@ internal class Program
 
 
         /*  DI  */
-        builder.Services.AddScoped<IEmployRepo, EmploysRepository>();
         builder.Services.AddScoped<IGroupRepo, GropuRepository>();
         builder.Services.AddScoped<IHealthEmployStatusRepo, HealthEmployStatusRepository>();
         builder.Services.AddScoped<IMainGroupRepo, MainGroupRepository>();
         builder.Services.AddScoped<IRoleRepo, RoleRepository>();
         builder.Services.AddScoped<IUserRepo, UserRepository>();
 
-        builder.Services.AddScoped<IEmployServices, EmployServices>();
         builder.Services.AddScoped<IGroupServices, GroupServices>();
         builder.Services.AddScoped<IUserServices, UserServices>();
 
