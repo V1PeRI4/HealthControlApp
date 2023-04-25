@@ -28,14 +28,34 @@ namespace HealthControlApp.API.Controllers
             return await _employServices.GetEmploys();
         }
 
-        /*  Хуйня какая-то  */
         [HttpPost]
+        [Route("test")]
+        public async Task<IActionResult> GetEmptyEmploy(EmployRequest employRequest)
+        {
+            await _employRepo.AddAsync(_employRepo.GetEmptyEmploy(employRequest));
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("add")]
+
         public async Task<IActionResult> AddAsync(Employ employ)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
             await _employRepo.AddAsync(employ);
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("addEmpty")]
+        public async Task<IActionResult> AddEmptyEmployAsync(EmployRequest employ)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            Employ _employ = _employRepo.GetEmptyEmploy(employ);
+            await AddAsync(_employ);
+            return Ok(_employ.Id);
         }
 
         [HttpDelete]
@@ -59,6 +79,8 @@ namespace HealthControlApp.API.Controllers
         {
             return await _employServices.FindByIdAsync(int.Parse(employId));
         }
+
+
 
     }
 }

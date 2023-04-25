@@ -11,7 +11,7 @@ namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
         {
         }
 
-        /*  FIND BY ID  (не трогай)*/
+        /*  FIND BY ID  */
         public async Task<Employ> FindByIdAsync(int? employId)
         {
             Employ? _employ = new Employ();
@@ -39,30 +39,34 @@ namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
         }
 
         /*  ADD EMPLOY  */
-        public async Task AddAsync(Employ _employ)
+        public async Task<int> AddAsync(Employ _employ)
         {
+            var test = await _context.AddAsync(_employ);
             try
             {
-                await _context.AddAsync(_employ);
+               
+
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 throw;
             }
-            return;
+            return test.;
         }
 
-        /* 
+        public Employ GetEmptyEmploy(EmployRequest employRequest)
+            {
+            Employ employ = new Employ() {  
+                Name = employRequest.Name, 
+                LastName = employRequest.LastName,
+                FatherName = employRequest.FatherName
+            };
 
-                public Task AddAsync(EmployRepo employ)
-                {
-                    throw new NotImplementedException();
-                }
+            return employ;
+        }
 
-         */
-
-        /*  DEKETE EMPLOY  */
+        /*  DELETE EMPLOY  */
         public async Task DeleteAsync(int employId)
         {
             Employ _employ = await FindByIdAsync(employId);
@@ -71,7 +75,6 @@ namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
             {
                 try
                 {
-                    /*await*/
                     _context.Employ.Remove(_employ);
                     await _context.SaveChangesAsync();
                 }

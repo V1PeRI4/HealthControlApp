@@ -9,8 +9,6 @@ namespace HealthControlApp.API.Models.MainModels
         [Required]
         public string Email { get; set; }
         [Required]
-        public string Pass { get; set; }
-        [Required]
         public int IdRole { get; set; }
         [Required]
         public int IdEmploy { get; set; }

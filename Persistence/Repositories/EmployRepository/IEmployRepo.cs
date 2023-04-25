@@ -6,7 +6,8 @@ namespace HealthControlApp.API.Persistence.Repositories.EmployRepository
     {
         Task<Employ> FindByIdAsync(int? employId);
         Task<IEnumerable<int>> GetAllId();
-        Task AddAsync(Employ employ);
+        Task<int> AddAsync(Employ employ);
+        Employ GetEmptyEmploy(EmployRequest employRequest);
         void Update(Employ employ);
         Task DeleteAsync(int employId);
     }

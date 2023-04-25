@@ -10,9 +10,31 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
     {
         public UserRepository(AppDbContext appDbContext): base(appDbContext) { }
 
-        public Task AddAsync(UserRepo userRepo)
+        public async Task AddAsync(User _user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.AddAsync(_user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return;
+        }
+
+        public User GetEmptyAsync(UserRequest userRequest)
+        {
+            User user = new User()
+            {
+                Email = userRequest.Email,
+                IdRole = 0,
+                IdEmploy = userRequest.IdEmploy,
+                IsDeleted = false
+            };
+
+            return user;
         }
 
         public Task DeleteAsync(int userId)

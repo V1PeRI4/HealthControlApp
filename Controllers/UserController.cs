@@ -23,6 +23,12 @@ namespace HealthControlApp.API.Controllers
             return _userServices.FindByIdAsync(userId);
         }
 
+/*        [HttpPost]
+        public Task<IActionResult> AddEmptyAsync() 
+        {
+
+        }*/
+
         [HttpGet]
         public Task<IEnumerable<UserRepo>> GetAllAsync()
         {
