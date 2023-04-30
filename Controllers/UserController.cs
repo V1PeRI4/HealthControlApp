@@ -1,4 +1,8 @@
-﻿using HealthControlApp.API.Models.DomainModels;
+﻿using HealthControlApp.API.Extensions;
+using HealthControlApp.API.Models.DomainModels;
+using HealthControlApp.API.Models.MainModels;
+using HealthControlApp.API.Persistence.Contexts;
+using HealthControlApp.API.Persistence.Repositories.UserRepository;
 using HealthControlApp.API.Persistence.Services.UserServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -11,28 +15,54 @@ namespace HealthControlApp.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserServices _userServices;
+        private readonly IUserRepo _userRepo;
+        private readonly AppDbContext _appDbContext;
 
-        public UserController(IUserServices userServices)
+        public UserController(IUserServices userServices, IUserRepo user, AppDbContext appDbContext)
         {
             _userServices = userServices;
+            _userRepo = user;
+            _appDbContext = appDbContext; 
         }
 
         [HttpGet("{userId}"), Authorize]
-        public Task<UserRepo> FindByIdAsync(int? userId)
+        public async Task<UserRepo> FindByIdAsync(int? userId)
         {
-            return _userServices.FindByIdAsync(userId);
+            return await _userServices.FindByIdAsync(userId);
         }
 
-/*        [HttpPost]
-        public Task<IActionResult> AddEmptyAsync() 
-        {
-
-        }*/
-
         [HttpGet, Authorize]
-        public Task<IEnumerable<UserRepo>> GetAllAsync()
+        public async Task<IEnumerable<UserRepo>> GetAllAsync()
         {
-            return _userServices.GetUsers();
+            return await _userServices.GetUsers();
+        }
+
+        [HttpPost, Authorize]   
+        public async Task<IActionResult> AddUser(User user)
+        {
+            if (user == null) 
+            {
+                return BadRequest();
+            }
+            await _userRepo.AddAsync(user);
+            await _appDbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int employId)
+        {
+            try
+            {
+                await _userRepo.DeleteAsync(employId);
+                await _appDbContext.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
         }
     }
 }

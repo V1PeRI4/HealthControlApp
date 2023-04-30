@@ -27,12 +27,7 @@ namespace HealthControlApp.API.Controllers
         [HttpGet("{idStatus}")]
         public async Task<HealthEmployStatus> FindByIdAsync(int? idStatus)
         {
-            HealthEmployStatus? _status = new HealthEmployStatus();
-            if (idStatus != null)
-            {
-                _status = await _dbStatus.FindByIdAsync(idStatus);
-            }
-            return _status;
+            return await _dbStatus.FindByIdAsync(idStatus);
         }
 
     }

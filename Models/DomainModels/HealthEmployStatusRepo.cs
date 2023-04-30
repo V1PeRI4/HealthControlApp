@@ -11,7 +11,7 @@ namespace HealthControlApp.API.Models.DomainModels
 
 
 
-        public HealthStatusRepo SetStatusRepo(int idStatus)
+        public static HealthStatusRepo SetStatusRepo(int idStatus)
         {
             switch (idStatus)
             {
