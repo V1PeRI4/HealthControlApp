@@ -14,7 +14,7 @@ namespace HealthControlApp.API.Persistence.Services
         {
             var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);
             var token = CreateJwtToken(
-                CreateClaims(user),
+                CreateClaims(user), 
                 CreateSigningCredentials(),
                 expiration
             );

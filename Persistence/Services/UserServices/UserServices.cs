@@ -38,7 +38,7 @@ namespace HealthControlApp.API.Persistence.Services.UserServices
             Role role = await _roleRepo.FindByIdAsync(user.IdRole);
             Group group = await _groupRepo.FindByIdAsync(user.IdGroup);
             MainGroup mainGroup = await _mainGroupRepo.FindByIdAsync(group.IdMainGroup);
-            HealthEmployStatus healthEmployStatus = await _healthEmployStatusRepo.FindByIdAsync(user.IdHealthEmployStatus);
+            HealthEmployStatus healthEmployStatus = await _healthEmployStatusRepo.FindByIdAsync(user.IdHealthStatus);
             
             RoleRepo roleRepo           = new RoleRepo()      { Id = role.Id};
             MainGroupRepo mainGroupRepo = new MainGroupRepo() { Id = mainGroup.Id, Name = mainGroup.Name };

@@ -5,6 +5,7 @@ using HealthControlApp.API.Persistence.QueryResults;
 using HealthControlApp.API.Persistence.Repositories.UserRepository;
 using HealthControlApp.API.Persistence.Services;
 using HealthControlApp.API.Persistence.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,12 @@ namespace HealthControlApp.API.Controllers
             _userRepo = userRepo;
         }
 
+        [HttpPost]
+        [Route("test")]
+        public async Task<RegistrationRequest> Test(RegistrationRequest registrationRequest)
+        {
+            return registrationRequest;
+        }
 
         [HttpPost]
         [Route("register")]
@@ -61,7 +68,7 @@ namespace HealthControlApp.API.Controllers
                         LastName = registrationRequest.LastName,
                         FatherName = registrationRequest.FatherName,
                         IdGroup = 0,
-                        IdHealthEmployStatus = 0,
+                        IdHealthStatus = 0,
                         IdRole = 0,
                         IsDeleted = false,
                     }

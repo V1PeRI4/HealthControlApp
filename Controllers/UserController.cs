@@ -26,18 +26,20 @@ namespace HealthControlApp.API.Controllers
         }
 
         [HttpGet("{userId}"), Authorize]
+        
         public async Task<UserRepo> FindByIdAsync(int? userId)
         {
             return await _userServices.FindByIdAsync(userId);
         }
-
         [HttpGet, Authorize]
+        [Route("getAllUser")]
         public async Task<IEnumerable<UserRepo>> GetAllAsync()
         {
             return await _userServices.GetUsers();
         }
 
-        [HttpPost, Authorize]   
+        [HttpPost, Authorize] 
+        [Route("postUser")]
         public async Task<IActionResult> AddUser(User user)
         {
             if (user == null) 
@@ -51,6 +53,8 @@ namespace HealthControlApp.API.Controllers
 
 
         [HttpDelete]
+        [Route("deleteUser")]
+
         public async Task<IActionResult> Delete(int employId)
         {
             try

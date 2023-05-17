@@ -21,7 +21,7 @@ namespace HealthControlApp.API.Models.MainModels
         [Required]
         public int IdGroup { get; set; }
         [Required]
-        public int IdHealthEmployStatus { get; set; }
+        public int IdHealthStatus { get; set; }
         [Required]
         public int IdRole { get; set; }
         public bool IsDeleted { get; set; }
