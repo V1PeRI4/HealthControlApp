@@ -30,7 +30,7 @@ namespace HealthControlApp.API.Persistence.Services.GroupServices
             GroupRepo groupRepo = new GroupRepo();
 
             groupRepo.Id = group.Id;
-            groupRepo.Name = group.Name;
+            groupRepo.group = group.group; // Name
             groupRepo.Description = group.Description;
             groupRepo.MainGroup = mainGroupRepo;
 

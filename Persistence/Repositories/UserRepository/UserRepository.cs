@@ -27,7 +27,7 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         {
             User user = new User()
             {
-                Email = userRequest.Email,
+                email = userRequest.Email, //Email
                 IdRole = 0,
                 IsDeleted = false
             };
@@ -54,7 +54,7 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         {
             var userList = await _context.Users.ToListAsync();
             List<int> allId = new List<int>();
-            userList.ForEach(e => { allId.Add(e.Id); });
+            userList.ForEach(e => { allId.Add(e.Id); }); //Id
             return allId;
         }
 

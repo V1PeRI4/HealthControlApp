@@ -7,7 +7,8 @@ namespace HealthControlApp.API.Models.DomainModels
         public int Id { get; set; }
         [Required]
         public HealthStatusRepo HealthStatus { get; set; }
-        public string Description { get; set; }
+
+        public string textHealthStatus { get; set; }// Description
 
 
 

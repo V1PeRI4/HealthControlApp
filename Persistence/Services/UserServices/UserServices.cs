@@ -47,20 +47,21 @@ namespace HealthControlApp.API.Persistence.Services.UserServices
                 Id = group.Id,
                 Description = group.Description,
                 MainGroup = mainGroupRepo, 
-                Name = group.Name
+                group = group.group, //Name
             };
             HealthEmployStatusRepo healthEmployStatusRepo = new HealthEmployStatusRepo()
             {
                 Id = healthEmployStatus.Id,
-                Description = healthEmployStatus.Description,
+                textHealthStatus = healthEmployStatus.textHealthStatus, //Description
             };
 
 
             UserRepo userRepo = new UserRepo()
             {
-                Id = user.IdRole,
+                Id = user.Id,
                 Name = user.Name,
-                Email = user.Email,
+                email = user.email, // Email
+                fullName = user.Name + " " + user.LastName + " " + user.FatherName,
                 FatherName = user.FatherName,
                 LastName = user.LastName,
                 Group = groupRepo,

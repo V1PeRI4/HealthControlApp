@@ -63,7 +63,7 @@ namespace HealthControlApp.API.Controllers
             await _userRepo.AddAsync(
                     new User
                     {
-                        Email = registrationRequest.Email,
+                        email = registrationRequest.Email, //Email 
                         Name = registrationRequest.Name,
                         LastName = registrationRequest.LastName,
                         FatherName = registrationRequest.FatherName,
@@ -101,7 +101,7 @@ namespace HealthControlApp.API.Controllers
             if (!isPasswordValid)
                 return BadRequest("Bad credentials");
 
-            var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+            var userInDb = _context.Users.FirstOrDefault(u => u.email == request.Email); //Email
             if (userInDb is null)
                 return Unauthorized();
 
@@ -110,7 +110,7 @@ namespace HealthControlApp.API.Controllers
             return Ok(new AuthResponse
             {
                 Username = userInDb.Name,
-                Email = userInDb.Email,
+                Email = userInDb.email, //Email
                 Token = accessToken,
             }) ;
         }

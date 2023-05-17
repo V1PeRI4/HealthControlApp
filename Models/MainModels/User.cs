@@ -12,7 +12,7 @@ namespace HealthControlApp.API.Models.MainModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public string Email { get; set; }
+        public string email { get; set; } // Email
         [Required]
         public string Name { get; set; }
         [Required]

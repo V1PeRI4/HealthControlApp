@@ -6,7 +6,7 @@ namespace HealthControlApp.API.Models.DomainModels
     {
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string group { get; set; } //name
         public string Description { get; set; }
         public MainGroupRepo MainGroup { get; set; }
     }

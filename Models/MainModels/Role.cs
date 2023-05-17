@@ -7,7 +7,7 @@ namespace HealthControlApp.API.Models.MainModels
     {
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string role { get; set; } // Name
 
     }
 

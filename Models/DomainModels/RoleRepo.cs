@@ -7,6 +7,7 @@ namespace HealthControlApp.API.Models.DomainModels
     {
         public int Id { get; set; }
 
+        public string role { get; set; } // Name
     }
 
 }
