@@ -1,5 +1,6 @@
 ﻿using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Models.MainModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HealthControlApp.API.Persistence.Repositories.UserRepository
 {
@@ -9,8 +10,9 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         Task<IEnumerable<int>> GetAllId();
         Task AddAsync(User userRepo);
         User GetEmptyAsync(UserRequest userRequest);
-        void Update(User user);
+        void UpdateUser(User user);
         Task DeleteAsync(int userId);
         Task<IEnumerable<UserRepo>> GetUser();
+        Task ChangeNameUser(int idUser, string newName);
     }
 }

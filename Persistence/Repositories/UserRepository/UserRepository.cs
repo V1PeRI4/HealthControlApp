@@ -1,6 +1,8 @@
 ﻿using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthControlApp.API.Persistence.Repositories.UserRepository
@@ -63,9 +65,30 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
             throw new NotImplementedException();
         }
 
-        public void Update(User user)
+        public async void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Users.Update(user);
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return;
         }
+
+        public async Task ChangeNameUser(int id, string newName)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user != null)
+            {
+                user.Name = newName;
+                await _context.SaveChangesAsync();
+            } 
+        }
+
+
     }
 }

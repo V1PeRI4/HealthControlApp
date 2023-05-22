@@ -10,8 +10,6 @@ namespace HealthControlApp.API.Models.DomainModels
 
         public string textHealthStatus { get; set; }// Description
 
-
-
         public static HealthStatusRepo SetStatusRepo(int idStatus)
         {
             switch (idStatus)

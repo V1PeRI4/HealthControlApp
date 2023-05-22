@@ -2,6 +2,7 @@
 using HealthControlApp.API.Models.DomainModels;
 using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
+using HealthControlApp.API.Persistence.Query;
 using HealthControlApp.API.Persistence.Repositories.UserRepository;
 using HealthControlApp.API.Persistence.Services.UserServices;
 using Microsoft.AspNetCore.Authorization;
@@ -67,6 +68,15 @@ namespace HealthControlApp.API.Controllers
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
+        }
+
+
+        [HttpPut]
+        [Route("changeName")]
+        public async Task<IActionResult> ChangeUserName(ChangeNameRequest changeNameRequest)
+        {
+            await _userRepo.ChangeNameUser(changeNameRequest.id, changeNameRequest.newName);
+            return Ok();
         }
     }
 }

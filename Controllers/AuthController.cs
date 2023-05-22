@@ -109,9 +109,11 @@ namespace HealthControlApp.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(new AuthResponse
             {
-                Username = userInDb.Name,
-                Email = userInDb.email, //Email
-                Token = accessToken,
+                Id = userInDb.Id,
+                username = userInDb.Name,
+                email = userInDb.email, //Email
+                role = userInDb.IdRole,
+                token = accessToken,
             }) ;
         }
     }
