@@ -59,6 +59,7 @@ namespace HealthControlApp.API.Persistence.Services.UserServices
             UserRepo userRepo = new UserRepo()
             {
                 Id = user.Id,
+                imageName = user.imageName,
                 Name = user.Name,
                 email = user.email, // Email
                 fullName = user.Name + " " + user.LastName + " " + user.FatherName,

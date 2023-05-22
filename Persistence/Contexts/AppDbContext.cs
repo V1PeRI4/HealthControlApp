@@ -32,5 +32,7 @@ namespace HealthControlApp.API.Persistence.Contexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<RegistrationRequest>().HasNoKey();
         }
+
+       
     }
 }

@@ -75,8 +75,30 @@ namespace HealthControlApp.API.Controllers
         [Route("changeName")]
         public async Task<IActionResult> ChangeUserName(ChangeNameRequest changeNameRequest)
         {
-            await _userRepo.ChangeNameUser(changeNameRequest.id, changeNameRequest.newName);
-            return Ok();
+            try
+            {
+                await _userRepo.ChangeNameUser(changeNameRequest.id, changeNameRequest.newName);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
+        }
+
+        [HttpPut]
+        [Route("changeHealthStatus")]
+        public async Task<IActionResult> ChangeHealthStatus(ChangeHealthStatusRequest changeHealthStatusRequest)
+        {
+            try
+            {
+                await _userRepo.ChangeHealthStatusUser(changeHealthStatusRequest.id, changeHealthStatusRequest.idNewStatus);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest(ModelState.GetErrorMessages());
+            }
         }
     }
 }

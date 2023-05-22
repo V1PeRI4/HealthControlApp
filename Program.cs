@@ -14,6 +14,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using HealthControlApp.API.Persistence.Services;
 using Microsoft.OpenApi.Models;
+using HealthControlApp.API.Models.DomainModels;
 
 internal class Program
 {
@@ -22,6 +23,8 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=127.0.0.1; Port=5432; Database=HealthControl; Username=postgres; Password=admin"));
+
+
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
@@ -110,7 +113,7 @@ internal class Program
         builder.Services.AddAutoMapper(typeof(Program));
 
 
-       
+        
 
         var app = builder.Build();
 
@@ -133,4 +136,5 @@ internal class Program
         app.Run();
     }
 
+   
 }

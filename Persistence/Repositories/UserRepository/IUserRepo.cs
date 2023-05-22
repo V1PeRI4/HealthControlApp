@@ -14,5 +14,6 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
         Task DeleteAsync(int userId);
         Task<IEnumerable<UserRepo>> GetUser();
         Task ChangeNameUser(int idUser, string newName);
+        Task ChangeHealthStatusUser(int id, int idNewStatus);
     }
 }

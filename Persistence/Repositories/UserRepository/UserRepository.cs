@@ -3,6 +3,7 @@ using HealthControlApp.API.Models.MainModels;
 using HealthControlApp.API.Persistence.Contexts;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Scripting.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthControlApp.API.Persistence.Repositories.UserRepository
@@ -89,6 +90,15 @@ namespace HealthControlApp.API.Persistence.Repositories.UserRepository
             } 
         }
 
+        public async Task ChangeHealthStatusUser(int id, int idNewStatus)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user != null)
+            {
+                user.IdHealthStatus = idNewStatus;
+                await _context.SaveChangesAsync();
+            }
+        }
 
     }
 }

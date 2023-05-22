@@ -11,6 +11,7 @@ namespace HealthControlApp.API.Models.MainModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public string imageName { get; set; }
         [Required]
         public string email { get; set; } // Email
         [Required]

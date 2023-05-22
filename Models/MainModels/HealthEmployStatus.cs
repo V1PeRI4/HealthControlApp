@@ -6,8 +6,6 @@ namespace HealthControlApp.API.Models.MainModels
     {
         public int Id { get; set; }
         [Required]
-        public int IdHealthStatus { get; set; }
-
         public string textHealthStatus { get; set; } // Description
     }
 
